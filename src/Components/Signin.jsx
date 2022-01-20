@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -8,61 +9,73 @@ export default class SignIn extends Component {
       password: "",
       ms: "",
     };
-    this.onchancepassword = this.onchancepassword.bind(this);
-    this.onchanceusername = this.onchanceusername.bind(this);
+    this.ChangePw = this.ChangePw.bind(this);
+    this.ChangeUn = this.ChangeUn.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  onchanceusername(event) {
+
+  ChangeUn(event) {
     this.setState({ username: event.target.value });
   }
-  onchancepassword(event) {
+  ChangePw(event) {
     this.setState({ password: event.target.value });
   }
   onSubmit() {
+
     axios
-      .get("http://localhost:5000/users/", {
+      .post("http://localhost:5000/users/", {
         username: this.state.username,
-        password: this.state.password,
       })
       .then((res) =>
-     
-          res.json(res.data)
+        this.setState({
+          ms:
+            res.data[0].password === this.state.password
+              ? "login  success"
+              : "login failure",
+          password: "",
+          username: "",
+        })
       )
-      .catch((err) => err.json("invalid account"));
+      .catch((err) => console.error(err));
   }
   render() {
     return (
-      <div className="signin-form">
-        <form
-          className="bg-light m-4 p-4 border border-secondary border-3"
-          style={{ width: "20%", height: "20%", borderRadius: "0.5em" }}
+      <div className="signinPage">
+        <div className="signinform">
+        <div className="m-2">
+          <label for="username" className="form-label">
+            Tên Đăng Nhập
+          </label>
+          <input
+            className="form-control"
+            value={this.state.username}
+            id="username"
+            onChange={this.ChangeUn}
+          />
+        </div>
+        <div class="m-2">
+          <label for="password" className="form-label">
+            Mật Khẩu
+          </label>
+          <input
+            className="form-control"
+            value={this.state.password}
+            onChange={this.ChangePw}
+            type="password"
+            id="password"
+          />
+        </div>
+        
+        <button
+          className="SigninButton"
+          onClick={this.onSubmit}
         >
-          <div className="mb-3 ">
-            <label for="username" >
-              User Name
-            </label>
-            <input
-              
-              className="form-control"
-              id="username"
-              onchange={this.onchangeusername}
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
-    <div className="status">{this.state.username}</div>
-          <button type="submit" className="btn btn-primary">
-            Sign In
-          </button>
-        </form>
+          Login
+        </button>
+
+        <p>{this.state.ms}</p>
+        </div>
+        
       </div>
     );
   }

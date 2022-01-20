@@ -1,37 +1,70 @@
 import React, { Component } from "react";
-import { Outlet, Link } from "react-router-dom";
-import {RiAccountCircleLine} from"react-icons/ri";
-import {TiShoppingCart} from"react-icons/ti";
-import {FcHome }  from"react-icons/fc";
-export default class Nav extends Component {
+import {  Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {GiMagnifyingGlass} from "react-icons/gi";
+import { TiShoppingCart } from "react-icons/ti";
+import { FcHome } from "react-icons/fc";
+import {BsBellFill} from "react-icons/bs";
+class NavPresent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      love: "true",
+    };
   }
+
   render() {
     return (
-      <div>
-        <ul class="nav justify-content-start">
-          <li class="nav-item">
-            <Link className="nav-link active" to="/home">Home <FcHome /></Link>
+      <div >
+     <div className="navContainer">
+        <ul className="nav">
+          <li className="navHome">
+            <Link to="/home">
+              <FcHome />   delwyn shop
+            </Link>
           </li>
-          <li class="nav-item">
-            <Link className="nav-link active" to="/product">Product</Link>
+          <li>
+          <input type="search"></input>
+          <button><GiMagnifyingGlass /></button>
           </li>
-          <li class="nav-item">
-            <Link className="nav-link active" to="/cart"><TiShoppingCart /></Link>
+          <li>
+            <Link to="/product">Product</Link>
           </li>
-          <li class="nav-item">
-            <Link className="nav-link active" to="/user"><RiAccountCircleLine /></Link>
+          <li>
+            <Link
+              className={
+                "nav-link  link-" +
+                (this.props.isChange ? "danger bg-warning" : "light")
+              }
+              to="/cart"
+            >
+              <TiShoppingCart /> Your Cart
+              {this.props.OnCart.reduce(function (sum, item) {
+                return sum + item.quantity;
+              }, 0)}
+            </Link>
           </li>
-          <li class="nav-item">
-            <Link className="nav-link active" to="/signup">Sign Up</Link>
-          </li>
-         
-         
-        </ul>
 
-        <Outlet />
+          <li>
+            <Link to="/infomation"><BsBellFill /></Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </ul>
+        </div>
+
+   
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isChange: state.itemReducer.AddProduct,
+    OnCart: state.itemReducer.OnProcessing,
+  };
+};
+const Nav = connect(mapStateToProps)(NavPresent);
+export default Nav;

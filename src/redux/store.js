@@ -2,7 +2,7 @@ import { createStore } from 'redux'
 import CartReducer from "./reducer"
 import { combineReducers } from "redux";
 const newReducer = combineReducers({
-    ListItem: CartReducer
+    itemReducer: CartReducer
 
 
 }); 

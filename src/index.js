@@ -11,7 +11,7 @@ import store from "./redux/store";
 import Cart from "./Components/Cart";
 import Product from './Components/Product';
 import App from './App';
-import SignIn from "./Components/Signin";
+
 import Signup from "./Components/signup"
 ReactDOM.render(
   <BrowserRouter>
@@ -20,12 +20,26 @@ ReactDOM.render(
 
         <App />
       </Provider>} >
+      <Route
+        index
+        element={
+         <Home />
+        }
+      />
         <Route path="home" element={<Home />} />
         <Route path="product" element={<Product />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="user" element={<SignIn />} />
+      
         <Route path="signup" element={<Signup />} />
       </Route>
+      <Route
+      path="*"
+      element={
+        <main style={{ padding: "1rem" }}>
+          <p>There's nothing here!</p>
+        </main>
+      }
+    />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

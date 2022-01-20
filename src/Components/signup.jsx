@@ -5,100 +5,56 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listuser: [],
+      username:"",
+      password:""
     };
+    this.SignUpAc= this.SignUpAc.bind(this);
+    this.onUsernameChange=this.onUsernameChange.bind(this);
+    this.changePassword=this.changePassword.bind(this);
   }
-  componentDidMount() {
+  onUsernameChange(e){
+    this.setState({username: e.target.value});
+  }
+  changePassword(e){
+    this.setState({password: e.target.value});  
+  }
+  SignUpAc() {
     axios
-      .get("http://localhost:5000/users/")
+      .post("http://localhost:5000/users/add",{username:this.state.username,password:this.state.password})
       .then((res) => {
-        this.setState({ listuser: res.data });
-        console.log(this.state.listuser);
+        this.setState({ms:"Sign up successfully",username:"",password:"",})
       })
       .catch((err) => {
-        console.error(err);
+        this.setState({ms:"Fail",username:"",password:""})
       });
   }
   render() {
     return (
       <div>
-        <form
-          className="bg-light m-4 p-4 border border-secondary border-3"
-          style={{ width: "20%", height: "20%", borderRadius: "0.5em" }}
-        >
-             <div className="mb-3 ">
-            <label for="Username" className="form-label">
-              User Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="Username"
-              ar
-              ia-describedby="emailHelp"
-            />
-          
-          </div>
-          <div className="mb-3 ">
-            <label for="name" className="form-label">
-               Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              ar
-              ia-describedby="emailHelp"
-            />
-          
-          </div>
-          <div className="mb-3 ">
-            <label for="face" className="form-label">
-               your images
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="face"
-              ar
-              ia-describedby="emailHelp"
-            />
-          
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="passwordrf" class="form-label">
-              Password comfirm
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="passwordrf"
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" for="exampleCheck1">
-              Save
-            </label>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-          </button>
-        </form>
+        <div className="mb-3 ">
+          <label for="Username" className="form-label">
+            User Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="Username"
+            value={this.state.username}
+            onChange={this.onUsernameChange}
+          />
+        </div>
+               <div class="mb-3">
+          <label for="password" class="form-label">
+            Password
+          </label>
+          <input type="password" value={this.state.password} 
+          className="form-control" id="password"
+          onChange={this.changePassword}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary" onClick={this.SignUpAc}>
+          Sign Up
+        </button>
       </div>
     );
   }

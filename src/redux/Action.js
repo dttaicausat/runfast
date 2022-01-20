@@ -1,5 +1,6 @@
-import ADD from "./ActionName";
-const add= (item) => {
+import {ADD,MINUS,REMOVE} from "./ActionName";
+
+export const add= (item) => {
   return {
     type: ADD,
     payload :{
@@ -7,4 +8,19 @@ const add= (item) => {
     }
   }
 };
-export default add;
+export const minus=(item)=>{
+  return {
+    type : MINUS,
+    payload :{
+      id:item.id
+    }
+  }
+}
+export const remove=(item)=>{
+  return { 
+    type:REMOVE,
+    payload :{
+      id:item.id
+    }
+  }
+}

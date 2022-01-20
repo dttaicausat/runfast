@@ -1,52 +1,80 @@
-import React, { Component } from "react";
-import {connect} from 'react-redux';
-import {BiPurchaseTag} from"react-icons/bi";
-import add from "../redux/Action"
- class Presentational extends React.Component {
+import React from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import { BiPurchaseTag } from "react-icons/bi";
+import { add } from "../redux/Action";
+import { BsFillHeartFill } from "react-icons/bs";
+class Presentational extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      count:0
-    }
-this.Add=this.Add.bind(this);
+    this.state = {
+      count: 0,
+      love: false,
+    };
+    this.Add = this.Add.bind(this);
+    this.Love = this.Love.bind(this);
   }
-  Add(){
-    this.props.AddToCart(this.props.item );
-    this.setState({count:this.state.count+1});
+  Add() {
+    this.props.AddToCart(this.props.item);
+    this.setState({ count: this.state.count + 1 });
+  }
+  Love() {
+    if (!this.state.love) {
+      axios
+        .post(`http://localhost:5000/product/update/${this.props.item._id}`, {
+          ...this.props.item,
+          love: this.props.item.love + 1,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+        this.setState({love:true});
+    }
   }
   render() {
     return (
-      <div className="card bg-light" style={{ width: "18rem",height:"18em" ,padding:"0.5rem" ,margin: "0.5rem" }}>
-        <img style={{ height:"40%",borderRadius:"1em"}}
+      <div className="item">
+        <img
+          className="itemImg"
           src={this.props.item.url}
-          className="card-img-top"
           alt={this.props.item.name}
         />
-        <div class="card-body">
-          <p class="card-text text-center">{this.props.item.name}</p>
-          <h3 className="text-center">
-            {this.props.item.cost.toLocaleString("vi", {
-              style: "currency",
-              currency: "VND",
-            })}
-          </h3>
-          <button onClick={this.Add} className="btn btn-primary btn-block text-center btn-buy mb-3" >Mua<BiPurchaseTag /></button>
-          
-        </div>
+
+        <p className="itemName">{this.props.item.name}</p>
+        <h3 className="itemPrice">
+          {this.props.item.cost.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </h3>
+
+        <button
+          onClick={this.Add}
+          className="btn btn-secondary  text-center btn-buy mb-3 itemBuy"
+        >
+          Buy <BiPurchaseTag />
+        </button>
+        {/* <h4 className="itemRemain"> {this.props.item.quantity}Remain</h4> */}
+        <button onClick={this.Love} className="itemHeart">
+          <BsFillHeartFill></BsFillHeartFill> {this.props.item.love}
+        </button>
       </div>
     );
   }
 }
 const mapStateToProps = (state) => {
-  return {NewListItem: state}
+  return { NewListItem: state.itemReducer.OnProcessing };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddToCart: (message) => {
-      dispatch(add(message))
-    }
-  }
+    AddToCart: (item) => {
+      dispatch(add(item));
+    },
+  };
 };
 
 const Item = connect(mapStateToProps, mapDispatchToProps)(Presentational);

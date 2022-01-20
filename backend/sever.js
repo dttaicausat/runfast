@@ -15,9 +15,9 @@ connection.once("open", () => {
   console.log("mongodg success");
 });
 
-const exerciseRoute = require("./routes/stuff");
+const exerciseRoute = require("./routes/Product");
 const userRoute = require("./routes/users");
-app.use("/exercise", exerciseRoute);
+app.use("/product", exerciseRoute);
 app.use("/users", userRoute);
 
 app.listen(port, () => {
