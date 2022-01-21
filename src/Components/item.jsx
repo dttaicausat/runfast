@@ -38,7 +38,7 @@ class Presentational extends React.Component {
     return (
       <div className="item">
         <img
-          className="itemImg"
+          className="itemImg img-thumbnail"
           src={this.props.item.url}
           alt={this.props.item.name}
         />

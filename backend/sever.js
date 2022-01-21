@@ -15,10 +15,10 @@ connection.once("open", () => {
   console.log("mongodg success");
 });
 
-const exerciseRoute = require("./routes/Product");
-const userRoute = require("./routes/users");
-app.use("/product", exerciseRoute);
-app.use("/users", userRoute);
+const ProductRoute = require("./routes/Product");
+const usersRoutes = require("./routes/users");
+app.use("/product", ProductRoute);
+app.use("/users", usersRoutes);
 
 app.listen(port, () => {
   console.log(`Server is starting on port ${port}`);

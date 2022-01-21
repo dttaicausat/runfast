@@ -52,18 +52,20 @@ export default class Product extends React.Component {
       <div className="shop">
         <div className="shopNav">
           <div className="shopTypeProduct">
-            <label for="type">Search</label>
-            <select className="" id="type" onChange={this.changeType}>
+            <label for="type">Type</label>{"  "}
+            <select className="form-select" id="type" onChange={this.changeType}>
               <option value="food">Food</option>
               <option value="drink">Drink</option>
               <option value="">All</option>F
-            </select>
-          </div>
-          <input
+            </select>{" "}
+       <label for="searchName">Search Name</label>
+            <input className="form-control" 
+            id="searchName"
             type="search"
-            value={this.state.searchName}
-            onChange={this.OnchangeSearch}
-          />
+              value={this.state.searchName}
+              onChange={this.OnchangeSearch}
+            />
+          </div>
 
           <div className="shopSideBar">
             <Link className="Linkss" to="">
