@@ -1,18 +1,17 @@
 const TableHead = () => {
   return (
-    <div>
-   <table className="table">
-        {" "}
     
-        <tr>
-        <th scope="col">Name</th>
-        <th scope="col"> image </th>
-        <th scope="col">quantity</th>
-        <th scope="col">price</th>
-        <th scope="col">adjustment</th>
-      </tr>
-      </table>
-    </div>
+  <div className="cart__Head">
+    <div className="headChild">name</div>
+    <div className="headChild"> image</div>
+    <div className="headChild">quantity</div>
+    <div className="headChild">price</div>
+    <div className="headChild">adjustment</div>
+
+
+
+  </div>
+  
   );
 };
 export default TableHead;

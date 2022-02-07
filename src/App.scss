@@ -1,97 +1,140 @@
-@import url("https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&family=Courgette&family=Rubik:wght@300&family=Secular+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+*{
+  font-family: Roboto, Helvetica, Tahoma, Arial, "Microsoft YaHei";
+  font-size: 16px;
+  background-color: rgb(242,243,247);
+  
+  color:black;
+  margin:auto;
+  
+}
+::-webkit-scrollbar-track {
+  background-color: black;
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 10px 10px 10px #CCCCCC;
+  border-radius: 0.25rem;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
 // nav
-.navContainer {
+.nav-container {
   position: fixed;
   display: flex;
   z-index: 1;
   justify-items: stretch;
   width: 100%;
-  padding: 0px;
-  margin: 0px;
-  height: 10%;
-  background-color: #621055;
+ background-color:white;
+  height: 5em;
+   padding: 1em 0  1em 0 ;
+
 }
 .nav {
   display: flex;
-
   width: 100%;
   height: 100%;
-  font-size: 1.25em;
-  text-transform: uppercase;
+  background-color:white;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 
+  li{
+   height: 100%;
+ display:flex;
+ align-items: center;
+background-color:inherit;
+
+   }
+   li:nth-child(1){
+     font-size:2em;
+    a{ color:rgb(255,101,0);
+    }
+    }
   a {
-    color: white;
-    font-family: "Abel", sans-serif;
-  }
-  a:link {
-    text-decoration: none;
-  }
-  a:link:hover {
-    opacity: 0.7;
-  }
-  button {
     background-color: inherit;
-    position: relative;
-    right: 40px;
-    color: black;
-    border: none;
+    color: black;  
+    font-size:0.875em;
+    text-decoration: none;
+    
+  }
+
+ input{
+   height:2em;
+   border-radius: 1em 0em 0em 1em ;
+   border: 2px solid rgb(255,101,0);  
+   background-color:inherit;
+
+   padding-left: 1em;
+   outline: none;
+ }
+  button {
+    height:2em;
+    background-color: rgb(255,101,0);
+    border-radius: 0em 1em 1em 0em ;
+   color:white;
+ font-size:1em;
+ border: 2px solid rgb(255,101,0);  
+    
+
   }
 }
+
 // hompage
-.homePage {
+.homepage {
   position: relative;
-  top: 10vh;
-  background-color: #ed6663;
+  top: 5em;
   display: grid;
   grid-gap: 2em;
   height: 100vh;
+
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
+ 
   .intro {
-    grid-column: 2 / span 6;
+    grid-column: 3 / span 5;
     text-align: center;
-    grid-row: 3 / span 8;
-    background-color: #b52b65;
+    grid-row: 4 / span 7;
+  background:white;
     border-radius: 1em;
-    font-size: large;
-    padding: 2em;
-    a {
-      color: white;
+    padding:3em;
+     border: 1px solid lightblue;
+    font-size:1.25em;
+    a{
+      color: rgb(255,101,0);
+      text-decoration: none;
+      background-color:inherit;
     }
-    a:hover {
-      opacity: 0.7;
-      display: inline-block;
-      transform: scale(1.4);
-    }
-    .homeTittle {
-      font-weight: bold;
-      text-transform: uppercase;
-      font-family: "Averia Gruesa Libre", cursive;
-    }
+  .home-text{
+    background-color:inherit;
   }
-  .homeSignin {
-    grid-column: 8 / span 4;
-    grid-row: 3 / span 8;
+  .home-tittle{
+    background-color: inherit;
+    font-size:1.75em;
+  }
+  
+  }
+  .home-signin {
+    background-color:white;
+    grid-column: 8/ span 4;
+    grid-row: 4 / span 7;
     text-align: center;
     display: flex;
-    background-color: #ffa372;
+    border: 1px solid lightblue;
     border-radius: 1em;
     justify-content: center;
-    color: black;
+   padding:2em;
     align-items: center;
-    font-family: "Fjalla One", sans-serif;
+  .signin-form-container{
+    background-color:white;
+  }
     input {
-      background: #ed6663;
+   
     }
     button {
       border-radius: 10%;
-      background-color: #ed6663;
-      color: white;
+    
+    
       box-shadow: 0px 0px 10px white;
     }
   }
@@ -101,52 +144,53 @@
   position: relative;
   top: 10vh;
   height: 100vh;
+ 
   display: grid;
-  background-color: #ed6663;
+ 
   grid-gap: 0em;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   .shopMain {
     grid-column: 3 / span 8;
+  
     grid-row: 1 / span 12;
     display: flex;
-    padding: 0.4em;
+  
+    justify-content:center;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
-    background-color: #b52b65;
+
   }
   .shopNav {
     grid-column: 1 / span 2;
     grid-row: 1 / span 12;
-    background-color: #e6d5a9;
+  
     background-size: cover;
-    margin-right: 0.5em;
+   
     .shopTypeProduct {
       width: 80%;
-      font-family: "Abel", sans-serif;
-      margin: 1em;
+      
+   
       input {
         width: 100%;
-        margin-top: 0.5em;
+      
       }
     }
     .shopSideBar {
       display: flex;
       flex-direction: column;
-      margin: 0em;
+  
 
       a {
-        padding: 0.5em;
+       
         text-decoration: none;
         text-transform: uppercase;
-        color: black;
-        font-family: "Fjalla One", sans-serif;
+       
       }
       a:hover {
-        width: 100%;
-        color: white;
-        background-color: #621055;
+       
+        
       }
     }
   }
@@ -159,7 +203,7 @@
     border-radius: 1em;
   }
   .shopMain::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
   }
 
   .shopAdvertisement {
@@ -173,10 +217,9 @@
   height: 20em;
   width: 15em;
   border-radius: 0.5em;
-  margin: 0.5em;
-  padding: 0.5em;
+ 
   border: 2px solid #621055;
-  background-color: white;
+
   display: grid;
   // grid-template-rows: repeat(4, 1fr);
   // grid-template-columns: repeat(3, 1fr);
@@ -193,26 +236,25 @@
   }
   .itemName {
     grid-area: name;
-    font-size: 1.3em;
+  
   }
   .itemPrice {
     display: flex;
     align-items: center;
     justify-content: center;
     grid-area: price;
-    font-size: 0.75em;
+  
   }
   .itemBuy {
     grid-area: buy;
-    background-color: #ffa372;
-    font-size: 0.7em;
-    padding: -0.5em;
+   
+  
   }
   .itemHeart {
     grid-area: heart;
-    color: #621055;
+  
     margin: auto;
-    background-color: transparent;
+  
     display: inline-block;
     border: none;
   }
@@ -228,7 +270,7 @@
   top: 10em;
   .trash {
     height: 100%;
-    background-color: red;
+  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,44 +278,95 @@
 }
 // Cart
 .cart {
+ 
   position: relative;
   top: 10vh;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-background-color:#ed6663;
+
   align-items: center;
+  .list {
+    position: relative;
+    top: 1em;
+    display: flex;
+    justify-content:center;
+    align-items:space-around;
+    flex-direction: column;
+    min-height:30%;
+  
+    width: 80%;
+  
+    border-radius: 20px;
+    border: 1px solid black;
+  }
 }
 // Item-In-Cart
 .itemInCart {
-  margin-top:1em;
+  position: relative;
+  margin-top: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 1000px;
-  height: 100px;
+
   .imgInCart {
-    width: 100px;
-    height: 100px;
+    width: 70%;
+    height: 70%;
   }
   .quantity {
     display: flex;
     flex-direction: row;
+    button {
+   
+      border-radius: 50%;
+      border: none;
+    
+      margin: 0.2em;
+    }
   }
-}
-.footer {
-  position: relative;
-  top: 10vh;
+  .remove {
+   
+  }
 }
 
 // Cart Purchase
 .cartPurchase {
   display: flex;
   margin-top: 2em;
-  width: 80%;
+  width: 100%;
+  padding: 0.5em;
+ 
   flex-direction: row;
-  justify-content: space-between;
-  background-color: red;
+  justify-content: space-around;
+
+ 
+  button{
+    border-radius:4px;
+ 
+    padding:5px;
+  }
+  button:hover{
+    opacity: 0.9;
+    color:black;
+  }
+}
+.cart__Head {
+  display: grid;
+  width: 80%;
+
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.headChild {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+//footer
+.footer {
+  position: relative;
+  top: 10vh;
 }

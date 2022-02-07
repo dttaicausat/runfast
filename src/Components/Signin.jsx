@@ -20,8 +20,8 @@ export default class SignIn extends Component {
   ChangePw(event) {
     this.setState({ password: event.target.value });
   }
-  onSubmit() {
-
+  onSubmit(e) {
+e.preventDefault();
     axios
       .post("http://localhost:5000/users/", {
         username: this.state.username,
@@ -40,11 +40,12 @@ export default class SignIn extends Component {
   }
   render() {
     return (
-      <div className="signinPage">
-        <div className="signinform">
+      <div className="signin-form-container">
+       
+          <form onSubmit={this.onSubmit}>
         <div className="m-2">
           <label for="username" className="form-label">
-            Tên Đăng Nhập
+            Username
           </label>
           <input
             className="form-control"
@@ -55,7 +56,7 @@ export default class SignIn extends Component {
         </div>
         <div class="m-2">
           <label for="password" className="form-label">
-            Mật Khẩu
+          Password
           </label>
           <input
             className="form-control"
@@ -67,14 +68,17 @@ export default class SignIn extends Component {
         </div>
         
         <button
+        type="submit"
           className="SigninButton"
-          onClick={this.onSubmit}
+      
         >
           Login
         </button>
 
         <p>{this.state.ms}</p>
-        </div>
+      </form>
+     
+      
         
       </div>
     );

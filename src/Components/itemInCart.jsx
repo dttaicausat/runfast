@@ -25,39 +25,31 @@ class Presentational extends Component {
   }
   render() {
     return (
-      <div className="itemInCart">
-     
-        {this.props.item.name}
-
-      
+      <div className="itemInCart cart__Head">
+        <h4 className="headChild">{this.props.item.name}</h4>{" "}
+        <img
+          className="imgInCart headChild"
+          src={this.props.item.url}
+          alt={this.props.item.name}
+        ></img>
+        <div className="quantity headChild">
           {" "}
-          <img
-            className="imgInCart"
-            src={this.props.item.url}
-            alt={this.props.item.name}
-          ></img>
-      
-         <div className="quantity">  <button className="btnInCart" onClick={this.Increate}>
+          <button className="btnInCart" onClick={this.Increate}>
             +
           </button>
           <p>{this.props.item.quantity}</p>
-
-          <button className="btnInCart" onClick={this.Decreate}>
+          <button className="btnInCart " onClick={this.Decreate}>
             -
-          </button></div>
-        
-     
-
-    
+          </button>
+        </div>{" "}
+        <h3 className="headChild">{this.props.item.cost*this.props.item.quantity} $</h3>
+        <div className="remove headChild">
           {" "}
-          <h3>{this.props.item.cost
-            }</h3>
-       
-          <button className="btnInCart" onClick={this.Remove}>
+          <button onClick={this.Remove}>
             {" "}
             <IoIosRemoveCircle />
           </button>
-    
+        </div>
       </div>
     );
   }

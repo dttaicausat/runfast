@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ItemInCart from "./itemInCart";
 import { add } from "../redux/Action";
 import EmptyCart from "./EmptyCart";
-
+import TableHead from "./TableHead";
 import Purchase from "./purchase";
 class CartPresent extends Component {
   constructor(props) {
@@ -16,15 +16,17 @@ class CartPresent extends Component {
   render() {
     return (
       <div className="cart">
-      
+          <div className="list">
           {" "}
           {this.props.inCartList.length === 0 && <EmptyCart />}
-          {/* {this.props.inCartList.length !== 0 && <TableHead />} */}
+          {this.props.inCartList.length !== 0 && <TableHead />} 
                    {" "}
             {this.props.inCartList.map((item) => (
               <ItemInCart item={item} key={item.id} />
             ))}
-        <Purchase />
+            </div>
+            
+         {this.props.inCartList.length !== 0 && <Purchase />} 
       </div>
     );
   }

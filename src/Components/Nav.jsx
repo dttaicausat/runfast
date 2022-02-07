@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {  Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {GiMagnifyingGlass} from "react-icons/gi";
+import {BsSearch} from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
 import { FcHome } from "react-icons/fc";
 import {BsBellFill} from "react-icons/bs";
@@ -16,16 +16,16 @@ class NavPresent extends Component {
   render() {
     return (
       <div >
-     <div className="navContainer">
+     <div className="nav-container">
         <ul className="nav">
-          <li className="navHome">
+          <li className="home-icon">
             <Link to="/home">
-              <FcHome />   delwyn shop
+              <FcHome />   Delwyn Shop
             </Link>
           </li>
           <li>
           <input type="search"></input>
-          <button><GiMagnifyingGlass /></button>
+          <button> Search</button>
           </li>
           <li>
             <Link to="/product">Product</Link>
@@ -33,12 +33,12 @@ class NavPresent extends Component {
           <li>
             <Link
               className={
-                "nav-link  link-" +
-                (this.props.isChange ? "danger bg-warning" : "light")
+                "nav-link  text-" +
+                (this.props.isChange ? "warning" : "dark")
               }
               to="/cart"
             >
-              <TiShoppingCart /> Your Cart
+              <TiShoppingCart /> Your Cart {" "}
               {this.props.OnCart.reduce(function (sum, item) {
                 return sum + item.quantity;
               }, 0)}
